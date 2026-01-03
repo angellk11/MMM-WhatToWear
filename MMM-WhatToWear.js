@@ -31,7 +31,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Heavy Coat",
                 maxTemp: 32,
                 minTemp: -999,
-                tags: ["insulating"]
+                tags: ["insulating"],
             },
             {
                 id: "sweater",
@@ -39,7 +39,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Sweater",
                 maxTemp: 50,
                 minTemp: 33,
-                tags: ["insulating"]
+                tags: ["insulating"],
             },
             {
                 id: "jacket",
@@ -47,7 +47,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Jacket",
                 maxTemp: 61,
                 minTemp: 51,
-                tags: ["insulating"]
+                tags: ["insulating"],
             },
             {
                 id: "long-sleeve",
@@ -55,7 +55,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Long Sleeve",
                 maxTemp: 68,
                 minTemp: 62,
-                tags: []
+                tags: [],
             },
             {
                 id: "tshirt",
@@ -63,7 +63,7 @@ Module.register("MMM-WhatToWear", {
                 label: "T-Shirt",
                 maxTemp: 82,
                 minTemp: 69,
-                tags: []
+                tags: [],
             },
             // bottoms
             {
@@ -72,7 +72,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Shorts",
                 maxTemp: 999,
                 minTemp: 83,
-                tags: ["bottoms", "warm"]
+                tags: ["bottoms", "warm"],
             },
             {
                 id: "long-pants",
@@ -80,7 +80,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Long Pants / Jeans",
                 maxTemp: 68,
                 minTemp: -999,
-                tags: ["bottoms", "cool"]
+                tags: ["bottoms", "cool"],
             },
             // supplemental
             {
@@ -89,7 +89,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Raincoat",
                 maxTemp: 999,
                 minTemp: -999,
-                tags: ["waterproof"]
+                tags: ["waterproof"],
             },
             {
                 id: "umbrella",
@@ -97,7 +97,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Umbrella",
                 maxTemp: 999,
                 minTemp: -999,
-                tags: ["waterproof"]
+                tags: ["waterproof"],
             },
             {
                 id: "windbreaker",
@@ -105,7 +105,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Windbreaker",
                 maxTemp: 999,
                 minTemp: -999,
-                tags: ["windproof"]
+                tags: ["windproof"],
             },
             {
                 id: "snow-pants",
@@ -113,7 +113,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Snow Pants",
                 maxTemp: 32,
                 minTemp: -999,
-                tags: ["bottoms", "cool", "waterproof"]
+                tags: ["bottoms", "cool", "waterproof"],
             },
             {
                 id: "default",
@@ -121,13 +121,13 @@ Module.register("MMM-WhatToWear", {
                 label: "Layer Up",
                 maxTemp: 999,
                 minTemp: -999,
-                tags: []
-            }
+                tags: [],
+            },
         ],
 
         rainProbThreshold: 0.25, // precipitation probability (pop)
         rainVolThreshold: 3, // mm/hr
-        windSpeedThreshold: 15 // mph
+        windSpeedThreshold: 15, // mph
     },
 
     /**
@@ -150,7 +150,7 @@ Module.register("MMM-WhatToWear", {
 
     getDom() {
         const wrapper = document.createElement("div");
-
+        wrapper.setAttribute("id", "wrapper");
         if (this.config.apiKey === "") {
             wrapper.innerHTML =
                 "Missing API key for openweathermap.org in the config for module: " +
@@ -175,12 +175,11 @@ Module.register("MMM-WhatToWear", {
         const units = this.units;
         const exclude = "minutely,daily,alerts";
         const url =
-           `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${units}&appid=${this.config.apiKey}`;
+            `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${units}&appid=${this.config.apiKey}`;
         const res = await fetch(url);
         if (!res.ok) {
-            self.updateDom;
-            console.log(res.status)
-            Log.error(`OpenWeather error ${res.status}`);
+            this.updateDom;
+            console.log(`OpenWeather error ${res.status}`);
         }
         return res.json();
     },
@@ -310,12 +309,12 @@ Module.register("MMM-WhatToWear", {
                     tempF <= c.maxTemp
         );
         // fallback: find any non-bottom matching temp
-        const fallbackTop = this.clothing.find((c) =>
-            !c.tags.includes("bottoms") &&
-            tempF >= c.minTemp && tempF <= c.maxTemp &&
-            !c.tags.includes("waterproof") &&
-            !c.tags.includes("windproof")
-        );
+        // const fallbackTop = this.clothing.find((c) =>
+        //     !c.tags.includes("bottoms") &&
+        //     tempF >= c.minTemp && tempF <= c.maxTemp &&
+        //     !c.tags.includes("waterproof") &&
+        //     !c.tags.includes("windproof")
+        // );
         return top;
         // return top || fallbackTop ||
         //     this.clothing.find((c) => c.id === "default");
@@ -393,7 +392,7 @@ Module.register("MMM-WhatToWear", {
      */
     async showOutfits() {
         try {
-            const data = await fetchHourlyForecast();
+            const data = await this.fetchHourlyForecast();
             const hourly = data.hourly || [];
             const current = data.current || hourly[0];
 
