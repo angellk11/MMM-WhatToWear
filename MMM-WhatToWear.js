@@ -4,7 +4,7 @@
  * Based on https://github.com/fruestueck/MMM-WeatherDependentClothes
  */
 
-Module.register("MMM-Template", {
+Module.register("MMM-WhatToWear", {
     // Default module config
     defaults: {
         lang: config.language,
@@ -133,9 +133,9 @@ Module.register("MMM-Template", {
     /**
      * Apply the default styles.
      */
-    getStyles() {
-        return ["template.css"];
-    },
+    // getStyles() {
+    //     return ["template.css"];
+    // },
 
     /**
      * Pseudo-constructor for our module. Initialize stuff here.
