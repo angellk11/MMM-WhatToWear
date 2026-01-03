@@ -293,7 +293,7 @@ Module.register("MMM-WhatToWear", {
      */
     chooseTopByTemp(tempF) {
         // choose top (ignore items tagged as 'bottoms' or supplemental)
-        const top = this.clothing.find((c) =>
+        const top = this.config.clothing.find((c) =>
             !c.tags.includes("bottoms") &&
                 c.tags.length === 0 === false
                 ? false
@@ -324,10 +324,10 @@ Module.register("MMM-WhatToWear", {
                     s.tags.includes("windproof"))
             );
         if (needsCoverage) {
-            return this.clothing.find((c) => c.id === "long-pants");
+            return this.config.clothing.find((c) => c.id === "long-pants");
         }
         // otherwise allow shorts if warm
-        return this.clothing.find((c) => c.id === "shorts");
+        return this.config.clothing.find((c) => c.id === "shorts");
     },
 
     chooseSupplementals(hourData) {
@@ -347,21 +347,21 @@ Module.register("MMM-WhatToWear", {
             const tempF = Math.round(hourData.temp);
             if (tempF <= 32) {
                 supplements.push(
-                    this.clothing.find((c) => c.id === "snow-pants"),
+                    this.config.clothing.find((c) => c.id === "snow-pants"),
                 );
             }
             if (tempF <= 60 && tempF > 32) {
                 supplements.push(
-                    this.clothing.find((c) => c.id === "raincoat"),
+                    this.config.clothing.find((c) => c.id === "raincoat"),
                 );
             } else {supplements.push(
-                    this.clothing.find((c) => c.id === "umbrella"),
+                    this.config.clothing.find((c) => c.id === "umbrella"),
                 );}
         }
 
         if (windMph >= this.config.windSpeedThreshold) {
             supplements.push(
-                this.clothing.find((c) => c.id === "jacket"),
+                this.config.clothing.find((c) => c.id === "jacket"),
             );
         }
 
