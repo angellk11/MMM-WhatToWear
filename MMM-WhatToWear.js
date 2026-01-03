@@ -191,7 +191,7 @@ Module.register("MMM-WhatToWear", {
         isCurrent = false,
     ) {
         const container = document.getElementById(
-            wrapper,
+            "wrapper",
         );
         if (!container) return;
 
@@ -414,10 +414,13 @@ Module.register("MMM-WhatToWear", {
                 if (!h) break;
                 renderHourBlock(h, false);
             }
+
+            this.loaded = true;
+            this.updateDom;
         } catch (err) {
             console.error(err);
             const container = document.getElementById(
-                wrapper,
+                "wrapper",
             );
             if (container) {
                 container.textContent = "Failed to load forecast.";
