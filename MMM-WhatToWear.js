@@ -175,10 +175,11 @@ Module.register("MMM-WhatToWear", {
         const units = this.units;
         const exclude = "minutely,daily,alerts";
         const url =
-           `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${units}&appid=${apiKey}`;
+           `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${units}&appid=${this.config.apiKey}`;
         const res = await fetch(url);
         if (!res.ok) {
             self.updateDom;
+            console.log(res.status)
             Log.error(`OpenWeather error ${res.status}`);
         }
         return res.json();
