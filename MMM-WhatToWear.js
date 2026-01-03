@@ -200,7 +200,7 @@ Module.register("MMM-WhatToWear", {
         const supplements = this.chooseSupplementals(
             hourData,
         );
-        const top = this.chooseBaseByTemp(temp);
+        const top = this.chooseTopByTemp(temp);
         const bottom = this.chooseBottomByTemp(
             temp,
             supplements,
