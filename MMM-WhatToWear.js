@@ -197,11 +197,11 @@ Module.register("MMM-WhatToWear", {
         });
 
         const temp = Math.round(hourData.temp);
-        const supplements = chooseSupplementals(
+        const supplements = this.chooseSupplementals(
             hourData,
         );
-        const top = chooseBaseByTemp(temp);
-        const bottom = chooseBottomByTemp(
+        const top = this.chooseBaseByTemp(temp);
+        const bottom = this.chooseBottomByTemp(
             temp,
             supplements,
         );
@@ -396,7 +396,7 @@ Module.register("MMM-WhatToWear", {
             container.innerHTML = "";
 
             if (current) {
-                renderHourBlock(current, 0, true);
+                this.renderHourBlock(current, 0, true);
             }
 
             const maxAvailable = hourly.length;
@@ -407,7 +407,7 @@ Module.register("MMM-WhatToWear", {
             for (let i = 1; i <= toShow; i++) {
                 const h = hourly[i];
                 if (!h) break;
-                renderHourBlock(h, false);
+                this.renderHourBlock(h, false);
             }
 
             this.loaded = true;
