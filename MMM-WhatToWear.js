@@ -173,8 +173,8 @@ Module.register("MMM-WhatToWear", {
             `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${units}&appid=${apiKey}`;
         const res = await fetch(url);
         if (!res.ok) {
-            this.updateDom;
             console.log(`OpenWeather error ${res.status}`);
+            this.updateDom;
         }
         return res.json();
     },
@@ -382,6 +382,7 @@ Module.register("MMM-WhatToWear", {
     async showOutfits() {
         try {
             const data = await this.fetchHourlyForecast();
+            console.log(data);
             const hourly = data.hourly || [];
             const current = data.current || hourly[0];
 
@@ -398,8 +399,8 @@ Module.register("MMM-WhatToWear", {
                 this.extendedHours,
                 Math.max(0, maxAvailable - 1),
             );
-            for (let i = 1; i <= toShow; i++) {
-                const h = hourly[i];
+            for (let i = 0; i <= toShow; i++) {
+                const h = hourly[i + 1];
                 if (!h) break;
                 this.renderHourBlock(h, false);
             }
