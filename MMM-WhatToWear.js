@@ -32,7 +32,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Heavy Coat",
                 maxTemp: 32,
                 minTemp: -999,
-                tags: ["insulating"],
+                tags: ["insulating", "tops"],
             },
             {
                 id: "sweater",
@@ -40,7 +40,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Sweater",
                 maxTemp: 50,
                 minTemp: 33,
-                tags: ["insulating"],
+                tags: ["insulating", "tops"],
             },
             {
                 id: "jacket",
@@ -48,7 +48,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Jacket",
                 maxTemp: 61,
                 minTemp: 51,
-                tags: ["insulating"],
+                tags: ["insulating", "tops"],
             },
             {
                 id: "long-sleeve",
@@ -56,7 +56,7 @@ Module.register("MMM-WhatToWear", {
                 label: "Long Sleeve",
                 maxTemp: 68,
                 minTemp: 62,
-                tags: [],
+                tags: ["tops"],
             },
             {
                 id: "tshirt",
@@ -64,7 +64,7 @@ Module.register("MMM-WhatToWear", {
                 label: "T-Shirt",
                 maxTemp: 82,
                 minTemp: 69,
-                tags: [],
+                tags: ["tops"],
             },
             // bottoms
             {
@@ -294,14 +294,8 @@ Module.register("MMM-WhatToWear", {
     chooseTopByTemp(tempF) {
         // choose top (ignore items tagged as 'bottoms' or supplemental)
         const top = this.config.clothing.find((c) =>
-            !c.tags.includes("bottoms") &&
-                c.tags.length === 0 === false
-                ? false
-                : !c.tags.includes("waterproof") &&
-                    !c.tags.includes("windproof") &&
-                    !c.tags.includes("bottoms") &&
-                    tempF >= c.minTemp &&
-                    tempF <= c.maxTemp
+            c.tags.includes("tops") && tempF >= c.minTemp &&
+            tempF <= c.maxTemp
         );
         // fallback: find any non-bottom matching temp
         // const fallbackTop = this.clothing.find((c) =>
