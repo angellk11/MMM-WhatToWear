@@ -386,7 +386,7 @@ Module.register("MMM-WhatToWear", {
      */
     async showOutfits() {
         try {
-            const data = await fetchHourlyForecast();
+            const data = await this.fetchHourlyForecast();
             const hourly = data.hourly || [];
             const current = data.current || hourly[0];
 
