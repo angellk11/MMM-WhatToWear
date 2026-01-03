@@ -392,11 +392,11 @@ Module.register("MMM-WhatToWear", {
      */
     async showOutfits() {
         try {
-            const data = await this.fetchHourlyForecast();
+            const data = await fetchHourlyForecast();
             const hourly = data.hourly || [];
             const current = data.current || hourly[0];
 
-            const container = document.getElementById(wrapper);
+            const container = document.getElementById("wrapper");
             if (!container) return;
             container.innerHTML = "";
 
