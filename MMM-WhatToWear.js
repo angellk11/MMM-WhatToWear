@@ -18,6 +18,7 @@ Module.register("MMM-WhatToWear", {
         extendedHours: 9,
 
         updateInterval: 20 * 60 * 1000, // 20 Min
+        initialLoadDelay: 1000,
 
         iconPath: "icons/",
         iconScale: 1, //1.00 = 100%
@@ -129,13 +130,6 @@ Module.register("MMM-WhatToWear", {
         rainVolThreshold: 3, // mm/hr
         windSpeedThreshold: 15, // mph
     },
-
-    /**
-     * Apply the default styles.
-     */
-    // getStyles() {
-    //     return ["template.css"];
-    // },
 
     /**
      * Pseudo-constructor for our module. Initialize stuff here.
