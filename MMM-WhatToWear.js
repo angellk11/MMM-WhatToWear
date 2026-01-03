@@ -164,12 +164,13 @@ Module.register("MMM-WhatToWear", {
      * Fetches latest hourly weather data
      */
     async fetchHourlyForecast() {
-        const lat = this.lat;
-        const lon = this.lon;
-        const units = this.units;
+        const lat = this.config.lat;
+        const lon = this.config.lon;
+        const units = this.config.units;
         const exclude = "minutely,daily,alerts";
+        const apiKey = this.config.apiKey;
         const url =
-            `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${units}&appid=${this.config.apiKey}`;
+            `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${units}&appid=${apiKey}`;
         const res = await fetch(url);
         if (!res.ok) {
             this.updateDom;
