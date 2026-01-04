@@ -15,7 +15,7 @@ Module.register("MMM-WhatToWear", {
         lat: "36.092",
         lon: "-112.843",
 
-        extendedHours: 3,
+        extendedHours: 5,
 
         updateInterval: 20 * 60 * 1000, // 20 Min
         initialLoadDelay: 1000,
@@ -189,6 +189,9 @@ Module.register("MMM-WhatToWear", {
             "wrapper",
         );
         if (!container) return;
+        container.style.display = "grid";
+        container.style.gridTemplateColumns = "1fr";
+        container.style.justifyItems = "center";
 
         const date = new Date(hourData.dt * 1000);
         const hourLabel = date.toLocaleTimeString([], {
