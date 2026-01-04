@@ -382,7 +382,6 @@ Module.register("MMM-WhatToWear", {
     async showOutfits() {
         try {
             const data = await this.fetchHourlyForecast();
-            console.log(data);
             const hourly = data.hourly || [];
             const current = data.current || hourly[0];
 
@@ -391,15 +390,15 @@ Module.register("MMM-WhatToWear", {
             container.innerHTML = "";
 
             if (current) {
-                this.renderHourBlock(current, 0, true);
+                this.renderHourBlock(current, true);
             }
 
-            const maxAvailable = hourly.length;
-            const toShow = Math.min(
-                this.extendedHours,
-                Math.max(0, maxAvailable - 1),
-            );
-            for (let i = 0; i <= toShow; i++) {
+            // const maxAvailable = hourly.length;
+            // const toShow = Math.min(
+            //     this.extendedHours,
+            //     Math.max(0, maxAvailable - 1),
+            // );
+            for (let i = 0; i <= this.extendedHours; i++) {
                 const h = hourly[i + 1];
                 if (!h) break;
                 this.renderHourBlock(h, false);
