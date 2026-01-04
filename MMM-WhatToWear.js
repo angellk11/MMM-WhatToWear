@@ -393,19 +393,19 @@ Module.register("MMM-WhatToWear", {
                 this.renderHourBlock(current, true);
             }
 
-            // const maxAvailable = hourly.length;
-            // const toShow = Math.min(
-            //     this.extendedHours,
-            //     Math.max(0, maxAvailable - 1),
-            // );
-            for (let i = 0; i <= this.extendedHours; i++) {
+            const maxAvailable = hourly.length;
+            const toShow = Math.min(
+                this.extendedHours,
+                Math.max(0, maxAvailable - 1),
+            );
+            for (let i = 0; i < toShow; i++) {
                 const h = hourly[i + 1];
                 if (!h) break;
                 this.renderHourBlock(h, false);
             }
 
             this.loaded = true;
-            this.updateDom;
+            this.updateDom();
         } catch (err) {
             console.error(err);
             const container = document.getElementById(
