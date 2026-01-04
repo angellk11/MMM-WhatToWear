@@ -405,7 +405,7 @@ Module.register("MMM-WhatToWear", {
             }
 
             this.loaded = true;
-            this.updateDom();
+            this.updateDom;
         } catch (err) {
             console.error(err);
             const container = document.getElementById(
