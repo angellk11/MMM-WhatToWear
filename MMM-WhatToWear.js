@@ -15,7 +15,7 @@ Module.register("MMM-WhatToWear", {
         lat: "36.092",
         lon: "-112.843",
 
-        extendedHours: 9,
+        extendedHours: 3,
 
         updateInterval: 20 * 60 * 1000, // 20 Min
         initialLoadDelay: 1000,
