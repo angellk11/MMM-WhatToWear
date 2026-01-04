@@ -399,7 +399,7 @@ Module.register("MMM-WhatToWear", {
                 Math.max(0, maxAvailable - 1),
             );
             for (let i = 0; i < toShow; i++) {
-                let h = hourly[i + 2]; // Every other hour to conserve space
+                let h = hourly[i + 3]; // Skip hours to conserve space
                 if (!h) break;
                 this.renderHourBlock(h, false);
             }
