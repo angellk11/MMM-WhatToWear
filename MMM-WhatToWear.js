@@ -192,6 +192,7 @@ Module.register("MMM-WhatToWear", {
         container.style.display = "grid";
         container.style.gridTemplateColumns = "1fr";
         container.style.justifyItems = "center";
+        container.style.marginTop = "5rem";
 
         const date = new Date(hourData.dt * 1000);
         const hourLabel = date.toLocaleTimeString([], {

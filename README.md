@@ -39,7 +39,7 @@ Minimal configuration to use the module:
 ```js
     {
         module: 'MMM-WhatToWear',
-        position: 'lower_third',
+        position: 'middle_center',
         config: {
             apiKey: "", // openweathermap.org 3.0 API key
             lat: "", // latitude
