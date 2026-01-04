@@ -390,18 +390,18 @@ Module.register("MMM-WhatToWear", {
             container.innerHTML = "";
 
             if (current) {
-                this.renderHourBlock(current, true);
+                this.renderHourBlock(current, 0, true);
             }
 
             const maxAvailable = hourly.length;
             const toShow = Math.min(
-                this.extendedHours,
+                this.config.extendedHours,
                 Math.max(0, maxAvailable - 1),
             );
             for (let i = 0; i < toShow; i++) {
-                const h = hourly[i + 1];
+                let h = hourly[i + 2]; // Every other hour to conserve space
                 if (!h) break;
-                this.renderHourBlock(h, false);
+                this.renderHourBlock(h, i, false);
             }
 
             this.loaded = true;
