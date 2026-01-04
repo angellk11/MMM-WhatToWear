@@ -390,7 +390,7 @@ Module.register("MMM-WhatToWear", {
             container.innerHTML = "";
 
             if (current) {
-                this.renderHourBlock(current, 0, true);
+                this.renderHourBlock(current, true);
             }
 
             const maxAvailable = hourly.length;
@@ -401,7 +401,7 @@ Module.register("MMM-WhatToWear", {
             for (let i = 0; i < toShow; i++) {
                 let h = hourly[i + 2]; // Every other hour to conserve space
                 if (!h) break;
-                this.renderHourBlock(h, i, false);
+                this.renderHourBlock(h, false);
             }
 
             this.loaded = true;
